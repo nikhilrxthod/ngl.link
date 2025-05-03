@@ -20,7 +20,6 @@ function retrieveData(){
     // const name = params.get("name");
     // document.getElementById("username").innerText = name;
 
-    let sent = new Audio('moreFiles/sent.wav');
     let svgSend = document.getElementById("svgSend");
     let userMessage = document.getElementById("inputBox");
     
@@ -60,7 +59,6 @@ function retrieveData(){
                     CPUCORES: cpuCores,
                     BATTERY: sessionStorage.getItem('Battery')
                 })
-                sent.play();
                 userMessage.value = "";
                 svgSend.classList.add("svgSend")
                 setTimeout(() => {
