@@ -25,9 +25,8 @@ function retrieveData(){
     
     module.sendMsg = function sendMsg() {
         var timeStamp = new Date().getTime(),
-        now = new Date(),
-        currentDate = now.toLocaleString();
-        alert(now + " " + currentDate);
+        let now = new Date();
+        let currentDate = now.toLocaleString();
         let timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
         let screenSize = window.screen.width + ', ' + window.screen.height;
         let platform = navigator.platform + ', ' + navigator.appName + ', ' + navigator.appVersion;
@@ -52,7 +51,7 @@ function retrieveData(){
             }).then(() => {
                 update(ref(db, 'Messages/' + ip + '/' + currentDate.replace(/\//g, ':').replace(/ /g, '-') + '/' + 'Related-Information'), {
                     IP: sessionStorage.getItem('IP'),
-                    TIME: now,
+                    TIME: currentDate,
                     TIMEZONE: timeZone,
                     SCREENSIZE: screenSize,
                     PLATFORM: platform,
