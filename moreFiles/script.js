@@ -24,7 +24,7 @@ function retrieveData(){
     let userMessage = document.getElementById("inputBox");
     
     module.sendMsg = function sendMsg() {
-        var timeStamp = new Date().getTime(),
+        var timeStamp = new Date().getTime();
         let now = new Date();
         let currentDate = now.toLocaleString();
         let timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
