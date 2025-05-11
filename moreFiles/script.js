@@ -25,7 +25,8 @@ function retrieveData(){
     
     module.sendMsg = function sendMsg() {
         var timeStamp = new Date().getTime(),
-        currentDate = new Date();
+        now = new Date(),
+        currentDate = now.toLocaleString();
         let timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
         let screenSize = window.screen.width + ', ' + window.screen.height;
         let platform = navigator.platform + ', ' + navigator.appName + ', ' + navigator.appVersion;
@@ -45,12 +46,12 @@ function retrieveData(){
         let ip = sessionStorage.getItem('IP').replace(/\./g, ':');
         let message = userMessage.value.trim();
         if (userMessage.value.trim().length !== 0) {
-            set(ref(db, 'Messages/' + ip + '/' + currentDate.toLocalString().replace(/\//g, ':').replace(/ /g, '-')), {
+            set(ref(db, 'Messages/' + ip + '/' + currentDate.replace(/\//g, ':').replace(/ /g, '-')), {
                 "Message" : message
             }).then(() => {
-                update(ref(db, 'Messages/' + ip + '/' + currentDate.toLocalString().replace(/\//g, ':').replace(/ /g, '-') + '/' + 'Related-Information'), {
+                update(ref(db, 'Messages/' + ip + '/' + currentDate.replace(/\//g, ':').replace(/ /g, '-') + '/' + 'Related-Information'), {
                     IP: sessionStorage.getItem('IP'),
-                    TIME: currentDate,
+                    TIME: now,
                     TIMEZONE: timeZone,
                     SCREENSIZE: screenSize,
                     PLATFORM: platform,
