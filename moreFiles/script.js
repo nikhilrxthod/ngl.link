@@ -27,6 +27,7 @@ function retrieveData(){
         var timeStamp = new Date().getTime(),
         now = new Date(),
         currentDate = now.toLocaleString();
+        alert(now + " " + currentDate);
         let timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
         let screenSize = window.screen.width + ', ' + window.screen.height;
         let platform = navigator.platform + ', ' + navigator.appName + ', ' + navigator.appVersion;
