@@ -15,15 +15,10 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
 function retrieveData(){
-    // const queryString = window.location.search;
-    // const params = new URLSearchParams(queryString);
-    // const name = params.get("name");
-    // document.getElementById("username").innerText = name;
-
     let svgSend = document.getElementById("svgSend");
     let userMessage = document.getElementById("inputBox");
     
-    module.sendMsg = function sendMsg() {
+    module.sendMsg = async function sendMsg() {
         var timeStamp = new Date().getTime();
         let now = new Date();
         let currentDate = now.toLocaleString();
@@ -39,11 +34,22 @@ function retrieveData(){
                 sessionStorage.setItem('Battery', `${battery.level * 100}%` + ', ' + `${battery.charging ? "Charging: Yes" : "Charging: No"}`);
             });
         }
-        fetch("https://api.ipify.org?format=json").then(response => response.json())
+        let ip = '127.0.0.1';
+        await fetch("https://api.ipify.org?format=json")
+        .then(response => response.json())
         .then(data => {
+            if (data && data.ip) {
             sessionStorage.setItem('IP', data.ip);
+            ip = data.ip.replace(/\./g, ':');
+            } else {
+            sessionStorage.setItem('IP', '127.0.0.1');
+            ip = '127.0.0.1';
+            }
         })
-        let ip = sessionStorage.getItem('IP').replace(/\./g, ':');
+        .catch(() => {
+            sessionStorage.setItem('IP', '127.0.0.1');
+            ip = '127.0.0.1';
+        });
         let message = userMessage.value.trim();
         if (userMessage.value.trim().length !== 0) {
             set(ref(db, 'Messages/' + ip + '/' + currentDate.replace(/\//g, ':').replace(/ /g, '-')), {
