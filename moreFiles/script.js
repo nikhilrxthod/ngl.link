@@ -64,7 +64,7 @@ function sendMessage(){
         msgSentPage.style.display = "none";
         sendAnotherMsg.style.display = "none";
         const url = new URL(window.location);
-        url.searchParams.delete('sent');
+        url.searchParams.delete('messageSent');
         window.history.replaceState({}, '', url);
     }
     module.msgSent = function msgSent(){
@@ -78,7 +78,7 @@ function sendMessage(){
         userMessage.value = baseMessages[randomIndex];
     }
     const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('sent') === 'success') {
+    if (urlParams.get('messageSent') === 'true') {
         module.msgSent();
     }
     module.sendMsg = async function sendMsg() {
@@ -134,10 +134,9 @@ function sendMessage(){
                 sendBtnIn.style.display = "flex";
                 sessionStorage.setItem('sent', 'true');
                 const url = new URL(window.location);
-                url.searchParams.set('sent', 'success');
+                url.searchParams.set('messageSent', 'true');
                 window.history.replaceState({}, '', url);
             });
-            
         }else{
             userMessage.focus();
         }
