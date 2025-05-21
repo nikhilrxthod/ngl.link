@@ -149,6 +149,7 @@ img{
 .inputSec{
     width: 100%;
     position: relative;
+    padding: 0px 4px 4px 4px;
     border-radius: 0 0 25px 25px;
     background-color: #ffffff66;
     backdrop-filter: blur(24px);
@@ -178,11 +179,11 @@ img{
     border: none;
     outline: none;
     overflow: auto;
-    min-height: 160px;
+    min-height: 150px;
     max-height: 400px;
     max-width: 100%;
     min-width: 100%;
-    padding: 15px 25px;
+    padding: 15px 20px;
     font-size: 20px;
     line-height: 1.15;
     font-weight: 700;
