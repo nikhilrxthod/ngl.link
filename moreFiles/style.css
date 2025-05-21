@@ -1,8 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap');
+
 *{
     margin: 0;
     padding: 0;
-    scroll-behavior: smooth;
     box-sizing: border-box;
+    font-family: "Exo 2", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
 }
 html{
     scroll-behavior: smooth;
@@ -11,8 +15,6 @@ html{
 }
 body{
     color: #fff;
-    user-select: none;
-    font-family: sans-serif;
 }
 a{
     text-decoration: none;
@@ -23,7 +25,7 @@ a{
     width: 100%;
     height: 100%;
     overflow: auto;
-    background: linear-gradient(120deg, #dd0055e0 20%, #dc5800e0 80%);
+    background: #EC1187 linear-gradient(to bottom right, #EC1187 0%, #FF8D10 100%);
 }
 .skin{
     width: 100%;
@@ -33,86 +35,94 @@ a{
     justify-content: center;
     flex-direction: column;
 }
-.regards{
-    position: absolute;
-    bottom: 40px;
-    left: 40px;
-    z-index: 1;
-    font-size: .9rem;
-    padding: 3px 15px;
-    border-left: 3px solid #fff;
-    border-radius: 4px;
-}
-.regard{
-    color: #fff;
-    line-height: 25px;
-}
-.regardName{
-    color: crimson;
-    font-weight: 700;
-    padding: 2px 5px;
-    border-radius: 4px;
-    background-color: #fff;
-    text-transform: uppercase;
-    outline-offset: 1px;
-    outline: 1px solid #fff;
-}
 .typeMsg{
     width: 100%;
     height: 100%;
     display: flex;
-    padding: 50px 20px;
+    position: relative;
+    padding: 50px 30px;
     align-items: center;
     justify-content: start;
     flex-direction: column;
-}
-.prompt {
-    color: #ffffff;
-    font-family: 'Rubik 80s Fade', sans-serif;
-    font-size: 1.05rem;
-    margin-bottom: 20px;
-    text-align: center;
-    /* animation: funnyBreath 2s ease-in-out infinite; */
-}
-@keyframes funnyBreath {
-    0%   { transform: scale(1) translateY(0); }
-    20%  { transform: scale(1.05, 0.98) translateY(-3px); }
-    40%  { transform: scale(0.97, 1.04) translateY(1px); }
-    60%  { transform: scale(1.04, 0.96) translateY(-2px); }
-    80%  { transform: scale(0.98, 1.03) translateY(1px); }
-    100% { transform: scale(1) translateY(0); }
 }
 .typeMsgIn{
     width: 100%;
     display: flex;
     max-width: 640px;
-    min-width: 200px;
+    min-width: 250px;
     align-items: center;
-    justify-content: space-between;
+    justify-content: start;
     flex-direction: column;
+}
+.topSec{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
+}
+.topSecIn{
+    display: flex;
+    margin-bottom: 100px;
+}
+
+.msgSentPage{
+    width: 100%;
+    display: none;
+    margin: 30px 0;
+}
+.backBtn{
+    border: none;
+    top: 25px;
+    left: 25px;
+    outline: none;
+    position: absolute;
+    transition: transform .2s;
+    background-color: transparent;
+}
+.msgSentPageIn{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
+}
+.msgSentPageIn p{
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: .5px;
+    margin-top: 10px;
+}
+
+.uppersec{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 32px 32px 25px 25px;
+    box-shadow: 0px 0px 5px #ffffffad;
 }
 header{
     width: 100%;
     display: flex;
     color: #000;
-    padding: 15px;
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
+    padding: 16px 16px 12px;
     align-items: center;
     justify-content: center;
     background-color: #fff;
+    border-radius: 32px 32px 0 0;
     border-bottom: 1px solid #000;
 }
 .img{
-    width: 46px;
-    height: 46px;
-    min-width: 46px;
-    min-height: 46px;
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    min-height: 42px;
     border-radius: 50%;
     margin-right: 15px;
     outline-offset: 2px;
     overflow: hidden;
-    /* outline: 2px solid #000; */
     background-color: #0000004a;
 }
 img{
@@ -131,35 +141,36 @@ img{
     font-size: .9rem;
 }
 .username{
-    margin-bottom: 3px;
-    font-weight: 400;
+    font-weight: 500;
 }
 .txt{
     font-weight: 600;
 }
-.uppersec{
+.inputSec{
     width: 100%;
-    height: 100%;
+    position: relative;
+    border-radius: 0 0 25px 25px;
+    background-color: #ffffff66;
+    backdrop-filter: blur(24px);
+}
+.randomMsg{
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    border: none;
+    font-size: 16px;
+    background-color: #ffffff40;
+    border-radius: 100px;
+    min-width: 34px;
+    min-height: 34px;
+    padding: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
-    border-radius: 30px;
-    transition: all .2s;
-    outline: 1px solid transparent;
-    box-shadow: 0 0 10px #fff;
+    transition: transform .2s;
 }
-/* .uppersec:focus-within{
-    outline-offset: 2px;
-    outline: 2px solid #000000;
-    box-shadow: 0 0 10px #000000;
-} */
-.inputSec{
-    width: 100%;
-    border-bottom-left-radius: 30px;
-    border-bottom-right-radius: 30px;
-    background-color: #ffffff66;
-    backdrop-filter: blur(24px);
+.randomMsg:active{
+    transform: scale(.85);
 }
 .inputBox{
     width: 100%;
@@ -171,23 +182,23 @@ img{
     max-height: 400px;
     max-width: 100%;
     min-width: 100%;
-    padding: 15px 20px;
+    padding: 15px 25px;
     font-size: 20px;
     line-height: 1.15;
-    font-weight: 600;
+    font-weight: 700;
     color: #000;
-    font-family: sans-serif;
+    border-radius: 0 0 25px 25px;
     background-color: transparent;
 }
 ::placeholder{
-    color: #0000005d;
+    color: #00000042;
 }
 .locktxt{
     font-size: 1rem;
     font-weight: 500;
     margin: 15px 0;
 }
-.sendBtn, .instaBtn{
+.btn{
     color: #fff;
     border: none;
     outline: none;
@@ -195,43 +206,49 @@ img{
     width: 100%;
     border-radius: 30px;
     padding: 0 20px;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-weight: 700;
     display: flex;
+    align-items: center;
+    justify-content: center;
     overflow: hidden;
     letter-spacing: 4px;
     text-transform: uppercase;
-    align-items: center;
-    justify-content: center;
     transition: all .2s;
     background-color: #000;
-    box-shadow: 0 0 10px #000000;
+    box-shadow: 0 4px 10px #000000a8;
 }
-.sendBtn:active{
-    transform: scale(.9);
+.btn:active{
+    transform: scale(.95);
     letter-spacing: normal;
-    -webkit-filter: blur(3px);
+    filter: blur(2px);
 }
-svg{
+.sendBtnIn{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.sending{
+    width: 35px;
+    height: 35px;
+    display: none;
+    border-radius: 50%;
+    border: 5px solid #ffffff3d;
+    border-top: 5px solid #fff;
+    animation: rotate 1s linear infinite;
+}
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.btnSvg{
     margin-left: 10px;
     transition: all 0s;
     background-color: transparent;
 }
-.svgSend{
-    opacity: 0;
-    transition: all 2s;
-    transform: translateX(400px) scale(.2);
-}
 .insta{
     width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    margin-top: 100px;
-}
-.instaBtnLink{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -240,9 +257,15 @@ svg{
 .instaprompt{
     font-size: 1.05rem;
     font-weight: 700;
-    margin: 18px 0;
     text-align: center;
     color: #fff;
+}
+.instaBtnLink{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 18px 0;
 }
 .instaBtn{
     animation: animate-shake 2s ease-in-out infinite;
@@ -259,5 +282,22 @@ svg{
     90% { transform: scale(1) rotate(0deg); }
     100% { transform: scale(1) rotate(0deg); }
 }
-  
-  
+.termsPrivacy{
+    gap: 10px;
+    color: #ffffff80;
+    display: flex;
+    font-size: 12px;
+    font-weight: 700;
+}
+.sendAnotherMsg{
+    font-size: 1.15rem;
+    font-weight: 600;
+    border: none;
+    color: #fff;
+    display: none;
+    margin-bottom: 15px;
+    padding-bottom: 2px 0;
+    letter-spacing: .5px;
+    border-bottom: 2px solid;
+    background-color: transparent;
+}
