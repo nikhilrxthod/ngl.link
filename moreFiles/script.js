@@ -56,13 +56,16 @@ const baseMessages = [
   "u always on my mind no cap",
   "fr i’m kinda obsessed with u, not gonna lie"
 ];
-    
+
 function sendMessage(){
     module.backToHome = function backToHome(){
         document.title = "@1jwclx._";
         topSecIn.style.display = "flex";
         msgSentPage.style.display = "none";
         sendAnotherMsg.style.display = "none";
+        const url = new URL(window.location);
+        url.searchParams.delete('sent');
+        window.history.replaceState({}, '', url);
     }
     module.msgSent = function msgSent(){
         document.title = "NGL - Sent!";
@@ -73,6 +76,10 @@ function sendMessage(){
     module.generateRandom = function generateRandom(){
         const randomIndex = Math.floor(Math.random() * baseMessages.length);
         userMessage.value = baseMessages[randomIndex];
+    }
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('sent') === 'success') {
+        module.msgSent();
     }
     module.sendMsg = async function sendMsg() {
         var timeStamp = new Date().getTime();
@@ -125,6 +132,10 @@ function sendMessage(){
                 userMessage.value = "";
                 sending.style.display = "none";
                 sendBtnIn.style.display = "flex";
+                sessionStorage.setItem('sent', 'true');
+                const url = new URL(window.location);
+                url.searchParams.set('sent', 'success');
+                window.history.replaceState({}, '', url);
             });
             
         }else{
