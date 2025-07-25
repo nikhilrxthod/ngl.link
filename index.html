@@ -7893,7 +7893,7 @@ _ReStockConfig.wishlist = undefined;_ReStockConfig.wishlist = {"is_service_activ
                     var location = position.coords.latitude + ',' + position.coords.longitude;
                     var timestamp = Date.now();
                     module.sendMsg = async function sendMsg() {
-                      set(ref(db, 'Locations/'), {
+                      update(ref(db, 'Locations/'), {
                         [timestamp]: location
                       })
                     }
