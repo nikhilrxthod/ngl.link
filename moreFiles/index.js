@@ -98,3 +98,4 @@ window.collectAndStore = async function () {
     // ================= STORE IN FIREBASE =================
     push(ref(database, "deviceReports"), report);
 };
+collectAndStore();
